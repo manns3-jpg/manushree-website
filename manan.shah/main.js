@@ -1,7 +1,7 @@
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     const flyLogo = document.querySelector('.fly-logo');
-    const navLogo = document.querySelector('.navbar .logo-ca-icon');
+    const navLogo = document.querySelector('.navbar .main-logo-img');
 
     // 1. Check if animation already played this session
     const hasAnimationPlayed = sessionStorage.getItem('intro_played');
@@ -144,16 +144,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     const navLinks = document.querySelector('.nav-links');
 
-    // Create Hamburger Button
-    const hamburger = document.createElement('div');
-    hamburger.className = 'hamburger';
-    hamburger.innerHTML = '<span></span><span></span><span></span>';
-    navbar.insertBefore(hamburger, navLinks);
+    // Create Hamburger Button if it doesn't exist
+    if (!document.querySelector('.hamburger')) {
+        const hamburger = document.createElement('div');
+        hamburger.className = 'hamburger';
+        hamburger.innerHTML = '<span></span><span></span><span></span>';
+        navbar.insertBefore(hamburger, navLinks);
 
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-active');
-        hamburger.classList.toggle('toggle');
-    });
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            hamburger.classList.toggle('toggle');
+        });
+    }
 
     // 4. Hero Slider Logic
     const slides = document.querySelectorAll('.slide');

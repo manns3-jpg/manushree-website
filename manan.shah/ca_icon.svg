@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#aa8c2c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Main Circle -->
+  <circle cx="50" cy="50" r="45" fill="none" stroke="url(#goldGradient)" stroke-width="4" />
+  
+  <!-- Inner Detail Line (Optional, for elegance) -->
+  <circle cx="50" cy="50" r="40" fill="none" stroke="url(#goldGradient)" stroke-width="1" opacity="0.5" />
+  
+  <!-- "CA" Text -->
+  <text x="50" y="65" font-family="'Times New Roman', Times, serif" font-weight="bold" font-size="45" text-anchor="middle" fill="url(#goldGradient)" letter-spacing="2">CA</text>
+  
+  <!-- Scales of Justice / Balance Icon (Abstract, simplified) -->
+  <path d="M50 35 L50 25 M35 35 L65 35 M35 35 L35 40 M65 35 L65 40" stroke="url(#goldGradient)" stroke-width="2" fill="none" opacity="0.8" />
+</svg>

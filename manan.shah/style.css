@@ -70,17 +70,23 @@ body {
     z-index: 10001;
     transition: all 1s cubic-bezier(0.7, 0, 0.3, 1);
     position: fixed;
+    object-fit: cover;
+    object-position: top center;
+    clip-path: inset(0 0 10% 0);
+    /* Match the main logo crop */
 }
 
 /* Initially hide navbar logo icon to prevent duplicate ONLY on home page with preloader */
-.logo-ca-icon {
+/* Initially hide navbar logo icon to prevent duplicate ONLY on home page with preloader */
+.main-logo-img {
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 /* Show logo in all other cases */
-.logo-ca-icon.visible,
-body:not(:has(#preloader)) .logo-ca-icon {
+.main-logo-img.visible,
+body:not(:has(#preloader)) .main-logo-img,
+.footer .main-logo-img {
     opacity: 1 !important;
 }
 
@@ -125,17 +131,25 @@ body:not(:has(#preloader)) .logo-ca-icon {
     padding: 10px 20px;
 }
 
+.main-logo-img {
+    height: 70px;
+    /* Adjusted height for better visibility */
+    width: auto;
+    object-fit: cover;
+    object-position: top center;
+    /* Crop bottom 10% to remove Agrawal text */
+    clip-path: inset(0 0 10% 0);
+    display: block;
+    transform: scale(1.15);
+    /* Slight zoom */
+}
+
 .logo-text {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 15px;
+    /* Increased gap to compensate for image scaling */
     transition: var(--transition);
-}
-
-.logo-ca-icon {
-    height: 50px;
-    width: auto;
-    display: block;
 }
 
 .logo-details {
@@ -186,11 +200,13 @@ body:not(:has(#preloader)) .logo-ca-icon {
     transition: var(--transition);
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
     color: var(--accent-color);
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.active::after {
     width: 100%;
 }
 
@@ -484,6 +500,11 @@ body:not(:has(#preloader)) .logo-ca-icon {
 @media screen and (max-width: 480px) {
     .services-grid {
         grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .service-card {
+        min-height: 120px;
     }
 }
 
@@ -553,13 +574,16 @@ body:not(:has(#preloader)) .logo-ca-icon {
 }
 
 .footer-links h4,
-.footer-contact h4 {
+.footer-contact h4,
+.footer-hours h4 {
     font-size: 18px;
     margin-bottom: 25px;
     position: relative;
 }
 
-.footer-links h4::after {
+.footer-links h4::after,
+.footer-contact h4::after,
+.footer-hours h4::after {
     content: '';
     position: absolute;
     bottom: -8px;
@@ -590,7 +614,49 @@ body:not(:has(#preloader)) .logo-ca-icon {
 
 .footer-contact p {
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.4;
+}
+
+.footer-contact p svg {
+    flex-shrink: 0;
+    opacity: 0.8;
+}
+
+.footer-contact p a {
+    transition: var(--transition);
+}
+
+.footer-contact p a:hover {
+    color: var(--accent-color) !important;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.social-btn:hover {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
 }
 
 .footer-bottom {
@@ -599,6 +665,29 @@ body:not(:has(#preloader)) .logo-ca-icon {
     text-align: center;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.watermark {
+    font-size: 12px;
+    opacity: 0.8;
+    letter-spacing: 0.5px;
+}
+
+.watermark:hover {
+    opacity: 1;
+    color: var(--accent-color);
+}
+
+@media screen and (max-width: 768px) {
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
 
 /* Sub-page Header Styles */
@@ -632,6 +721,20 @@ body:not(:has(#preloader)) .logo-ca-icon {
 }
 
 @media screen and (max-width: 768px) {
+
+    /* Header adjustments for mobile */
+    .main-logo-img {
+        height: 50px;
+    }
+
+    .main-name {
+        font-size: 16px;
+    }
+
+    .sub-name {
+        font-size: 8px;
+    }
+
     .nav-links {
         position: fixed;
         right: -100%;
@@ -676,7 +779,53 @@ body:not(:has(#preloader)) .logo-ca-icon {
     }
 
     .hero-title {
-        font-size: 36px;
+        font-size: 28px;
+        line-height: 1.3;
+        margin-bottom: 20px;
+    }
+
+    .content {
+        padding: 0 20px;
+    }
+
+    .page1-header {
+        margin-bottom: 20px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .page2 {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .section-desc {
+        font-size: 16px;
+    }
+
+    .reviews {
+        padding: 60px 0;
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Footer mobile adjustments */
+    .footer {
+        padding: 60px 0 30px;
     }
 
     .footer-grid {
@@ -684,7 +833,13 @@ body:not(:has(#preloader)) .logo-ca-icon {
         text-align: center;
     }
 
-    .footer-links h4::after {
+    .footer-contact p {
+        justify-content: center;
+    }
+
+    .footer-links h4::after,
+    .footer-contact h4::after,
+    .footer-hours h4::after {
         left: 50%;
         transform: translateX(-50%);
     }
